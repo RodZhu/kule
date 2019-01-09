@@ -1,32 +1,37 @@
-package driver;
+package distinct.driver;
 
+import distinct.map.DistinctMapper;
+import distinct.reduce.DistinctReduce;
+import driver.WordCountDriver;
 import map.WordCountMapper;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import reduce.WorldCountReduce;
 
-/**
- * Created by rod on 2018/12/12.
- */
-public class WordCountDriver {
+import java.io.IOException;
 
-    public static void main(String[] args) throws Exception {
+/**
+ * Created by rod on 2019/1/9.
+ */
+public class DistinctDriver {
+
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
         Configuration c = new Configuration();
 
         // 获取job对象实例
+//        Job job = Job.getInstance(c);
         Job job = Job.getInstance(c);
 
         // 设置job方法的入口驱动类
-        job.setJarByClass(WordCountDriver.class);
+        job.setJarByClass(DistinctDriver.class);
 
         // 设置mapper组件类
-        job.setMapperClass(WordCountMapper.class);
+        job.setMapperClass(DistinctMapper.class);
 
         // 设置输出key类型
         job.setMapOutputKeyClass(Text.class);
@@ -34,18 +39,19 @@ public class WordCountDriver {
         job.setMapOutputValueClass(IntWritable.class);
 
         // 设置reduce类
-        job.setReducerClass(WorldCountReduce.class);
+        job.setReducerClass(DistinctReduce.class);
         // 设置reduce 输出key 类
         job.setOutputKeyClass(Text.class);
         // 设置reduce value类
         job.setOutputValueClass(Text.class);
 
         // 设置输入路径
-        FileInputFormat.setInputPaths(job, new Path("hdfs://10.199.164.183:9000/park01/test.txt"));
+        FileInputFormat.setInputPaths(job, new Path("hdfs://10.199.164.183:9000/distinct/distinct.txt"));
         // 设置输出路径
-        FileOutputFormat.setOutputPath(job, new Path("hdfs://10.199.164.183:9000/park01/result"));
+        FileOutputFormat.setOutputPath(job, new Path("hdfs://10.199.164.183:9000/distinct/result"));
 
         // 提交job
         job.waitForCompletion(true);
-    }
+
+}
 }

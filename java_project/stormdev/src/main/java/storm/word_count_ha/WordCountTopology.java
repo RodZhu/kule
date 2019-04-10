@@ -1,13 +1,9 @@
-package storm.word_count;
+package storm.word_count_ha;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.generated.StormTopology;
 import org.apache.storm.topology.TopologyBuilder;
-
-/**
- * Created by rod on 2019/3/19.
- */
 public class WordCountTopology {
 
     public static void main(String[] args) {

@@ -1,0 +1,4 @@
+worker-id: dc26f093-a69d-49c2-ba46-bcc55f70f4c0
+logs.users: []
+logs.groups: []
+topology.submitter.user: rod

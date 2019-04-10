@@ -1,35 +1,28 @@
-package storm.word_count;
+package storm.custom_grouping;
+
 
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseRichBolt;
-import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
-import org.apache.storm.tuple.Values;
-
 import java.util.Map;
 
 /**
- * Created by rod on 2019/3/19.
+ * Created by rod on 2019/3/20.
  */
-public class SplitBolt extends BaseRichBolt {
-
-    private OutputCollector collector;
+public class LessThanBolt extends BaseRichBolt {
 
     public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
-        this.collector = collector;
+
     }
 
     public void execute(Tuple input) {
-        String line = input.getStringByField("line");
-        String[] lines = line.split(" ");
-        for(String str : lines) {
-            collector.emit(new Values(str));
-        }
+        Integer number = input.getIntegerByField("number");
+        System.out.println("Less: " + number);
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("word"));
+
     }
 }

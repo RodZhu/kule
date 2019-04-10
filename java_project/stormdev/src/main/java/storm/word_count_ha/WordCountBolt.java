@@ -1,4 +1,4 @@
-package storm.word_count;
+package storm.word_count_ha;
 
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
@@ -10,7 +10,6 @@ import org.apache.storm.tuple.Values;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * Created by rod on 2019/3/19.
@@ -26,15 +25,20 @@ public class WordCountBolt extends BaseRichBolt {
     }
 
     public void execute(Tuple input) {
-        String word = input.getStringByField("word");
 
-        if (countMap.containsKey(word)) {
-            countMap.put(word, countMap.get(word) + 1);
-        } else {
-            countMap.put(word, 1);
+        try{
+            String word = input.getStringByField("word");
+            if (countMap.containsKey(word)) {
+                countMap.put(word, countMap.get(word) + 1);
+            } else {
+                countMap.put(word, 1);
+            }
+            collector.emit(input, new Values(word, countMap.get(word)));
+            int a = 1/0;
+            collector.ack(input);
+        }catch (Exception e) {
+            collector.fail(input);
         }
-
-        collector.emit(new Values(word, countMap.get(word)));
 
     }
 

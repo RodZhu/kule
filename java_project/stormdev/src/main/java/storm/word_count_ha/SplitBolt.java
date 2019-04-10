@@ -1,4 +1,4 @@
-package storm.word_count;
+package storm.word_count_ha;
 
 import org.apache.storm.task.OutputCollector;
 import org.apache.storm.task.TopologyContext;
@@ -22,14 +22,23 @@ public class SplitBolt extends BaseRichBolt {
     }
 
     public void execute(Tuple input) {
-        String line = input.getStringByField("line");
-        String[] lines = line.split(" ");
-        for(String str : lines) {
-            collector.emit(new Values(str));
+        try{
+            String line = input.getStringByField("line");
+            String[] lines = line.split(" ");
+            for(String str : lines) {
+                collector.emit(input, new Values(str));
+            }
+            collector.ack(input);
+        }catch(Exception e) {
+            System.out.println(e);
+            collector.fail(input);
         }
+
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("word"));
     }
+
+
 }

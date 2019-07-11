@@ -5,6 +5,14 @@ import org.apache.storm.Config;
 import org.apache.storm.StormSubmitter;
 import org.apache.storm.generated.StormTopology;
 import org.apache.storm.topology.TopologyBuilder;
+import org.apache.storm.utils.Utils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by rod on 2019/3/19.
@@ -12,7 +20,21 @@ import org.apache.storm.topology.TopologyBuilder;
 public class WordCountCLusterTopology {
 
     public static void main(String[] args) throws Exception {
+
         Config config = new Config();
+
+        if (args != null && args.length > 0) {
+            Properties properties = new Properties();
+            InputStream in = new FileInputStream(new File(args[0]));
+            properties.load(in);
+            Iterator<Map.Entry<Object, Object>> iterator = properties.entrySet().iterator();
+            while(iterator.hasNext()) {
+                Map.Entry<Object, Object> next = iterator.next();
+                System.out.println("key: " + next.getKey() + " value: " + next.getValue());
+            }
+            in.close();
+        }
+
 
         // 设置work jvm并发度
         config.setNumWorkers(2);

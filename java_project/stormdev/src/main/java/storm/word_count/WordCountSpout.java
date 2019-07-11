@@ -22,7 +22,7 @@ public class WordCountSpout extends BaseRichSpout {
             "hello world",
             "hello storm",
             "hello 2019",
-            "hello vipshop"
+            "hello shop"
     };
 
     public void open(Map map, TopologyContext topologyContext, SpoutOutputCollector spoutOutputCollector) {

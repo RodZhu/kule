@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dev_test" />
+        <module name="hadoopMapReduce" />
+        <module name="stormdev" />
+        <module name="tarena_study" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dev_test" target="1.8" />
+      <module name="hadoopMapReduce" target="1.5" />
+      <module name="stormdev" target="1.5" />
+      <module name="tarena_study" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

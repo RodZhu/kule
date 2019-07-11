@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dev_test/dev_test.iml" filepath="$PROJECT_DIR$/dev_test/dev_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hadoopMapReduce/hadoopMapReduce.iml" filepath="$PROJECT_DIR$/hadoopMapReduce/hadoopMapReduce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java_project.iml" filepath="$PROJECT_DIR$/.idea/java_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stormdev/stormdev.iml" filepath="$PROJECT_DIR$/stormdev/stormdev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarena_study/tarena_study.iml" filepath="$PROJECT_DIR$/tarena_study/tarena_study.iml" />
+    </modules>
+  </component>
+</project>

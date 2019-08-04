@@ -13,8 +13,8 @@ object Driver {
     var sc = new SparkContext(conf)
     var word = sc.textFile("file:///apps/logs/spark/test.txt",2)
 
-    var rdd = word.flatMap{_.split(" ")}.map{(_,1)}.reduceByKey(_+_);
+    Thread.sleep(20000)
+    var rdd = word.flatMap{_.split(" ")}.map{(_,1)}.reduceByKey(_+_)
     rdd.foreach(println(_))
   }
-
 }

@@ -15,7 +15,7 @@ import java.net.URI;
 public class HadoopDemo {
 
     @Test
-    public void get() throws Exception{
+    public void get() throws Exception {
         Configuration c = new Configuration();
         c.set("dfs.replication", "1");
         FileSystem fs = FileSystem.get(new URI("hdfs://10.199.164.183:9000"), c);
@@ -27,7 +27,7 @@ public class HadoopDemo {
     }
 
     @Test
-    public void put() throws Exception{
+    public void put() throws Exception {
         Configuration c = new Configuration();
         c.set("dfs.replication", "1");
         c.set("HADOOP_USER_NMAE", "root");
@@ -38,4 +38,5 @@ public class HadoopDemo {
         InputStream out = new FileInputStream(new File("data.txt"));
         org.apache.hadoop.io.IOUtils.copyBytes(out, open, c);
     }
+
 }
